@@ -5,26 +5,33 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
 getMovies(API_URL);
 function getMovies(url) {
-  fetch(url).then(res => res.json()).then(data => { showMovies(data.results); })
+  fetch(url).then(res => res.json()).then(data => {
+    console.log(data.results)
+    showMovies(data.results);
+  })
 }
 
 function showMovies(data) {
   data.forEach(movie => {
+    const { title, poster_path, vote_average, overview } = movie;
     const movieEl = document.createElement('section');
     movieEl.classList.add('movie');
-    movieEl.innerHTML =
-
-      <img src="https://image.tmdb.org/t/p/w500" + ''
-    alt = "image" >
+    movieEl.innerHTML = '
+      < img src = "${IMG_URL+poster_path}"
+    alt = "${title}" >
 
     <section class="movie-info">
-        <span>movie title</span>
-        <span>9.1</span>
+        <span>${title}</span>
+        <span>${vote_average}</span>
     </section>
-    <br>
+    <br></br>
     <article class="overview">
-        lorem ipsum
+        ${overview};
     </article>
-
+    '
   })
 }
+
+const getColor = () => {
+  vote > 6 ? return 'green': 'red';
+};
