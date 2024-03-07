@@ -1,0 +1,15 @@
+:root {
+    --primary-color: blue;
+    --secondary-color: red;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
