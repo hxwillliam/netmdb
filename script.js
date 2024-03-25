@@ -22,10 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const {
         title,
         poster_path,
-        vote_average,
+        vote,
         overview,
         release_date,
         original_language,
+        vote_average= movie,
       } = movie;
   
   
@@ -35,13 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const titleEl = document.createElement('span');
       const voteEl = document.createElement('span');
   
-  
+      const getColor = (vote) => {
+        if (vote >= 7) {
+          return 'green';
+        } else if (vote >= 5) {
+          return 'orange';
+        } else {
+          return 'red';
+        }
+      };
       movieEl.classList.add('movie');
       imgEl.src = IMG_URL + poster_path;
       imgEl.alt = title;
       infoEl.classList.add('movie-info');
-      titleEl.textContent = title;
-      voteEl.textContent = ` (punteggio:${vote_average})`;
+      titleEl.textContent = title + ' ';
+      voteEl.style.backgroundColor = getColor(vote_average);
+      voteEl.textContent = vote_average;
   
   
       infoEl.appendChild(titleEl);
@@ -49,11 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       movieEl.appendChild(imgEl);
       movieEl.appendChild(infoEl);
       main.appendChild(movieEl);
+
     });
   };
-  const getColor = (vote) => {
-    return vote >= 8 ? "green" : vote >= 5 ? "orange" : "red";
-  };
-
   getMovies(API_URL);
 });
