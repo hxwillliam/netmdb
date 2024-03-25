@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
@@ -13,41 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const showMovies = (data) => {
     main.innerHTML = "";
     data.forEach((movie) => {
-      const { title, poster_path, vote_average, overview } = movie;
+      const { title, poster_path, vote_average, overview, release_date, original_language } = movie;
       const movieEl = document.createElement("div");
       movieEl.classList.add("movie");
       movieEl.innerHTML = `
-
-
-      <img src=${IMG_URL + poster_path}" alt="${title}">
-
-      <div class="movie-info">
+        <img src=${IMG_URL + poster_path}" alt="${title}">
+        <div class="movie-info">
           <span>${title}</span>
           <span> (punteggio:${vote_average})</span>
-      </div>
-      <br>
-      <article class="overview">
-      ${overview}
-      </article>
+        </div>
+        <div class="movie-extra-info">
+          <p>Release Date: ${release_date}</p>
+          <p>Original Language: ${original_language}</p>
+          <p>${overview}</p>
+        </div>
       `;
-
+  
+      movieEl.addEventListener('click', () => {
+        movieEl.classList.toggle('expanded');
+      });
+  
       main.appendChild(movieEl);
     });
   };
-  /*const form = document.getElementById('form');
-  const search = document.getElementById('search');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const searchTerm = search.value;
-
-    console.log('Form submitted'); 
-    console.log('Search term:', searchTerm);
-
-    if (searchTerm) {
-      getMovies(SEARCH_API_URL + '&query=' + searchTerm);
-    }
-  });*/
   const getColor = (vote) => {
     return vote >= 8 ? "green" : vote >= 5 ? "orange" : "red";
   };

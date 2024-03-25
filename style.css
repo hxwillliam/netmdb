@@ -32,3 +32,10 @@ main {
     border: 1px solid black;
     border-radius: 10px;
 }
+.movie-extra-info {
+    display: none;
+  }
+  
+  .movie.expanded .movie-extra-info {
+    display: block;
+  }
