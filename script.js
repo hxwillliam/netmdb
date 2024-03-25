@@ -1,37 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
-  const getMovies = (url) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        showMovies(data.results);
-      });
+  
+  const getMovies = async (url) => {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+      showMovies(data.results);
+    } catch (error) {
+      console.log('Error:', error);
+      setTimeout(() => {
+        getMovies(url);
+      }, 2000);
+    }
   };
   const showMovies = (data) => {
-    main.innerHTML = "";
+    main.innerHTML = ""
+  
     data.forEach((movie) => {
-      const { title, poster_path, vote_average, overview, release_date, original_language } = movie;
-      const movieEl = document.createElement("div");
-      movieEl.classList.add("movie");
-      movieEl.innerHTML = `
-        <img src=${IMG_URL + poster_path}" alt="${title}">
-        <div class="movie-info">
-          <span>${title}</span>
-          <span> (punteggio:${vote_average})</span>
-        </div>
-        <div class="movie-extra-info">
-          <p>Release Date: ${release_date}</p>
-          <p>Original Language: ${original_language}</p>
-          <p>${overview}</p>
-        </div>
-      `;
+      const {
+        title,
+        poster_path,
+        vote_average,
+        overview,
+        release_date,
+        original_language,
+      } = movie;
   
-      movieEl.addEventListener('click', () => {
-        movieEl.classList.toggle('expanded');
-      });
   
+      const movieEl = document.createElement('div');
+      const imgEl = document.createElement('img');
+      const infoEl = document.createElement('div');
+      const titleEl = document.createElement('span');
+      const voteEl = document.createElement('span');
+  
+  
+      movieEl.classList.add('movie');
+      imgEl.src = IMG_URL + poster_path;
+      imgEl.alt = title;
+      infoEl.classList.add('movie-info');
+      titleEl.textContent = title;
+      voteEl.textContent = ` (punteggio:${vote_average})`;
+  
+  
+      infoEl.appendChild(titleEl);
+      infoEl.appendChild(voteEl);
+      movieEl.appendChild(imgEl);
+      movieEl.appendChild(infoEl);
       main.appendChild(movieEl);
     });
   };
