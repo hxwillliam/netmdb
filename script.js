@@ -1,28 +1,21 @@
 
-
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = 'api_key=6408e0e2d7398dc7d8998cb43aed056e';
-const API_URL = BASE_URL +'/movie/popular?'+ API_KEY;
-const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-
-document.addEventListener('DOMContentLoaded', () => {
-  const main = document.getElementById('main');
+document.addEventListener("DOMContentLoaded", () => {
+  const main = document.getElementById("main");
 
   const getMovies = (url) => {
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
         showMovies(data.results);
       });
   };
-
   const showMovies = (data) => {
-    main.innerHTML = '';
-    data.forEach(movie => {
+    main.innerHTML = "";
+    data.forEach((movie) => {
       const { title, poster_path, vote_average, overview } = movie;
-      const movieEl = document.createElement('div');
-      movieEl.classList.add('movie');
+      const movieEl = document.createElement("div");
+      movieEl.classList.add("movie");
       movieEl.innerHTML = `
 
 
@@ -41,11 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
       main.appendChild(movieEl);
     });
   };
+  /*const form = document.getElementById('form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
+    const searchTerm = search.value;
+
+    if (searchTerm) {
+      getMovies(SEARCH_API_URL + '&query=' + searchTerm);
+    }
+  });*/
   const getColor = (vote) => {
-    return vote >= 8 ? 'green' : vote >= 5 ? 'orange' : 'red';
+    return vote >= 8 ? "green" : vote >= 5 ? "orange" : "red";
   };
 
   getMovies(API_URL);
 });
-
