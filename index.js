@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
   
-        // Close the modal when clicked outside of the modal content
         modal.addEventListener("click", (e) => {
           if (e.target !== modalContent) {
             modal.remove();
@@ -68,6 +67,25 @@ document.addEventListener("DOMContentLoaded", () => {
       voteEl.style.backgroundColor = getColor(vote_average);
       voteEl.textContent = vote_average;
 
+      movieEl.addEventListener("click", () => {
+        const modal = document.createElement("div");
+        modal.classList.add("modal");
+      
+        const modalContent = document.createElement("div");
+        modalContent.classList.add("modal-content");
+        modalContent.textContent = overview;
+      
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+      
+
+        modal.addEventListener("click", (e) => {
+          if (e.target !== modalContent) {
+            modal.remove();
+          }
+        });
+      });
+      
       infoEl.appendChild(titleEl);
       infoEl.appendChild(voteEl);
       movieEl.appendChild(imgEl);
