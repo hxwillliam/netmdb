@@ -1,8 +1,15 @@
+<<<<<<< HEAD:index.js
 import { API_URL, IMG_URL, BASE_URL, API_KEY } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
+=======
+document.addEventListener("DOMContentLoaded", () => {
+  const main = document.getElementById("main");
+
+  
+>>>>>>> parent of bafab54 (update):script.js
   const getMovies = async (url) => {
     try {
       const res = await fetch(url);
@@ -17,8 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
   const showMovies = (data) => {
+<<<<<<< HEAD:index.js
     main.innerHTML = "";
 
+=======
+    main.innerHTML = ""
+  
+>>>>>>> parent of bafab54 (update):script.js
     data.forEach((movie) => {
       const {
         title,
@@ -27,8 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
         overview,
         release_date,
         original_language,
-        vote_average = movie,
+        vote_average= movie,
       } = movie;
+<<<<<<< HEAD:index.js
 
       const movieEl = document.createElement("div");
       const imgEl = document.createElement("img");
@@ -36,6 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const titleEl = document.createElement("span");
       const voteEl = document.createElement("span");
 
+=======
+  
+  
+      const movieEl = document.createElement('div');
+      const imgEl = document.createElement('img');
+      const infoEl = document.createElement('div');
+      const titleEl = document.createElement('span');
+      const voteEl = document.createElement('span');
+  
+>>>>>>> parent of bafab54 (update):script.js
       const getColor = (vote) => {
         if (vote >= 7) {
           return "green";
@@ -52,7 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
       titleEl.textContent = title + " ";
       voteEl.style.backgroundColor = getColor(vote_average);
       voteEl.textContent = vote_average;
+<<<<<<< HEAD:index.js
 
+=======
+  
+  
+>>>>>>> parent of bafab54 (update):script.js
       infoEl.appendChild(titleEl);
       infoEl.appendChild(voteEl);
       movieEl.appendChild(imgEl);
