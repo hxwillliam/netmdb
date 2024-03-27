@@ -1,4 +1,4 @@
-import { API_URL, IMG_URL };
+import { API_URL, IMG_URL } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
