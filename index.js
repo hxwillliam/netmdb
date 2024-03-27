@@ -1,7 +1,9 @@
+import { API_URL, IMG_URL, BASE URL, API KEY } from "./api.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
-  
+
   const getMovies = async (url) => {
     try {
       const res = await fetch(url);
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   const showMovies = (data) => {
     main.innerHTML = ""
-  
+
     data.forEach((movie) => {
       const {
         title,
@@ -26,16 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
         overview,
         release_date,
         original_language,
-        vote_average= movie,
+        vote_average = movie,
       } = movie;
-  
-  
+
+
       const movieEl = document.createElement('div');
       const imgEl = document.createElement('img');
       const infoEl = document.createElement('div');
       const titleEl = document.createElement('span');
       const voteEl = document.createElement('span');
-  
+
       const getColor = (vote) => {
         if (vote >= 7) {
           return 'green';
@@ -52,8 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
       titleEl.textContent = title + ' ';
       voteEl.style.backgroundColor = getColor(vote_average);
       voteEl.textContent = vote_average;
-  
-  
+
+
       infoEl.appendChild(titleEl);
       infoEl.appendChild(voteEl);
       movieEl.appendChild(imgEl);
