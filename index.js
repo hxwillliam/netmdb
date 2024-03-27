@@ -1,5 +1,3 @@
-import { API_URL, IMG_URL } from "./api.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
@@ -24,12 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
         title,
         poster_path,
         vote,
-        overvieww,
+        overview,
         vote_average = movie,
       } = movie;
 
       const movieEl = document.createElement("div");
+      movieEl.classList.add("movie-card");
       const imgEl = document.createElement("img");
+      movieEl.addEventListener("click", () => {
+        const modal = document.createElement("div");
+        modal.classList.add("modal");
+  
+        const modalContent = document.createElement("div");
+        modalContent.classList.add("modal-content");
+        modalContent.textContent = overview;
+  
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+  
+        // Close the modal when clicked outside of the modal content
+        modal.addEventListener("click", (e) => {
+          if (e.target !== modalContent) {
+            modal.remove();
+          }
+        });
+      });
       const infoEl = document.createElement("div");
       const titleEl = document.createElement("span");
       const voteEl = document.createElement("span");
