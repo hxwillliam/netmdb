@@ -1,22 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:index.js
 import { API_URL, IMG_URL, BASE_URL, API_KEY } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
-=======
-document.addEventListener("DOMContentLoaded", () => {
-  const main = document.getElementById("main");
-
-  
->>>>>>> parent of bafab54 (update):script.js
-=======
-document.addEventListener("DOMContentLoaded", () => {
-  const main = document.getElementById("main");
-
-  
->>>>>>> parent of bafab54 (update)
   const getMovies = async (url) => {
     try {
       const res = await fetch(url);
@@ -24,37 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(data);
       showMovies(data.results);
     } catch (error) {
-      console.log("Error:", error);
+      console.log("Errore:", error);
       setTimeout(() => {
         getMovies(url);
       }, 2000);
     }
   };
   const showMovies = (data) => {
-<<<<<<< HEAD
-<<<<<<< HEAD:index.js
     main.innerHTML = "";
 
-=======
-    main.innerHTML = ""
-  
->>>>>>> parent of bafab54 (update):script.js
-=======
-    main.innerHTML = ""
-  
->>>>>>> parent of bafab54 (update)
     data.forEach((movie) => {
       const {
         title,
         poster_path,
         vote,
-        overview,
-        release_date,
-        original_language,
-        vote_average= movie,
+        overvieww,
+        vote_average = movie,
       } = movie;
-<<<<<<< HEAD
-<<<<<<< HEAD:index.js
 
       const movieEl = document.createElement("div");
       const imgEl = document.createElement("img");
@@ -62,21 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const titleEl = document.createElement("span");
       const voteEl = document.createElement("span");
 
-=======
-=======
->>>>>>> parent of bafab54 (update)
-  
-  
-      const movieEl = document.createElement('div');
-      const imgEl = document.createElement('img');
-      const infoEl = document.createElement('div');
-      const titleEl = document.createElement('span');
-      const voteEl = document.createElement('span');
-  
-<<<<<<< HEAD
->>>>>>> parent of bafab54 (update):script.js
-=======
->>>>>>> parent of bafab54 (update)
       const getColor = (vote) => {
         if (vote >= 7) {
           return "green";
@@ -93,17 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titleEl.textContent = title + " ";
       voteEl.style.backgroundColor = getColor(vote_average);
       voteEl.textContent = vote_average;
-<<<<<<< HEAD
-<<<<<<< HEAD:index.js
 
-=======
-  
-  
->>>>>>> parent of bafab54 (update):script.js
-=======
-  
-  
->>>>>>> parent of bafab54 (update)
       infoEl.appendChild(titleEl);
       infoEl.appendChild(voteEl);
       movieEl.appendChild(imgEl);
