@@ -1,14 +1,25 @@
+body{
+
+}
+
 header {
     color: white;
     background-color: #020305;
     font-family: Verdana;
 }
 
-h1{
-    color: red;
+#h1{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: orangered;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
     
 }
 input{
@@ -27,6 +38,7 @@ main {
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(      3, 1fr);
+    overflow: hidden;
 }
 .movie {
   background-color: aliceblue;
@@ -50,4 +62,30 @@ main {
   .score{
     border-radius: 10%;
     padding: 2px 5px;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 1em;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  #modal-content {
+    opacity: 90%;
+    width: 50%;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    color: black;
   }

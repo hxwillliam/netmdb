@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     }
   };
+
   const showMovies = (data) => {
     main.innerHTML = "";
 
@@ -23,32 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
         poster_path,
         vote,
         overview,
-        vote_average = movie,
+        vote_average,
       } = movie;
 
       const movieEl = document.createElement("div");
       movieEl.classList.add("movie-card");
       const imgEl = document.createElement("img");
-      movieEl.addEventListener("click", () => {
-        const modal = document.createElement("div");
-        modal.classList.add("modal");
-  
-        const modalContent = document.createElement("div");
-        modalContent.classList.add("modal-content");
-        modalContent.textContent = overview;
-  
-        modal.appendChild(modalContent);
-        document.body.appendChild(modal);
-  
-        modal.addEventListener("click", (e) => {
-          if (e.target !== modalContent) {
-            modal.remove();
-          }
-        });
-      });
       const infoEl = document.createElement("div");
       const titleEl = document.createElement("span");
       const voteEl = document.createElement("span");
+
+      const modal = document.createElement("div");
+      modal.id = "modal";
+      modal.classList.add("modal");
+      modal.style.display = "none";
+      const modalContent = document.createElement("div");
+      modalContent.id = "modal-content";
+      modalContent.classList.add("modal-content");
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
 
       const getColor = (vote) => {
         if (vote >= 7) {
@@ -68,24 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
       voteEl.textContent = vote_average;
 
       movieEl.addEventListener("click", () => {
-        const modal = document.createElement("div");
-        modal.classList.add("modal");
-      
-        const modalContent = document.createElement("div");
-        modalContent.classList.add("modal-content");
+        console.log("movie clicked");
         modalContent.textContent = overview;
-      
-        modal.appendChild(modalContent);
-        document.body.appendChild(modal);
-      
+        modal.style.display = "flex";
 
         modal.addEventListener("click", (e) => {
           if (e.target !== modalContent) {
-            modal.remove();
+            modal.style.display="none";
           }
         });
       });
-      
       infoEl.appendChild(titleEl);
       infoEl.appendChild(voteEl);
       movieEl.appendChild(imgEl);
