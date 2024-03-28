@@ -14,6 +14,9 @@ form.addEventListener("submit", (e) => {
 
       const movieImage = document.createElement('img');
       movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+      movieImage.addEventListener('click', () => {
+        window.open(`https://www.google.com/search?q=${movie.name}`, '_blank');
+      });
       movieElement.appendChild(movieImage);
 
       const movieTitle = document.createElement('p');
