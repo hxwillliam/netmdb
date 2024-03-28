@@ -1,4 +1,3 @@
-
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 
@@ -8,57 +7,48 @@ form.addEventListener("submit", (e) => {
   const showMovies = (movies) => {
     const main = document.getElementById("main");
     main.innerHTML = "";
-  
-    movies.forEach((movie) => {
-      const movieElement = document.createElement("a");
-      movieElement.textContent = movie.name;
-      movieElement.href = "#";
-      movieElement.dataset.id = movie.id;
-      movieElement.style.color ="whitesmoke";
-      main.appendChild(movieElement);
 
-      movieElement.addEventListener("click", (e) => {
-        e.preventDefault();
-        const movieId = e.target.dataset.id;
-        getMovieDetails(movieId);
-      });
+    movies.forEach((movie) => {
+      const movieElement = document.createElement("div");
+      movieElement.classList.add('movie-card');
+
+      const movieImage = document.createElement('img');
+      movieImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+      movieElement.appendChild(movieImage);
+
+      const movieTitle = document.createElement('p');
+      movieTitle.textContent = movie.name;
+      movieTitle.style.color="gray";
+      movieTitle.style.fontFamily="verdana";
+      movieElement.appendChild(movieTitle);
+      movieElement.style.marginTop="10px";
+
+
+      main.appendChild(movieElement);
     });
   };
-  
 
-const getMovieDetails = (id) => {
-  const url = `https://api.themoviedb.org/3/tv/${id}?language=en-US`;
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NDA4ZTBlMmQ3Mzk4ZGM3ZDg5OThjYjQzYWVkMDU2ZSIsInN1YiI6IjY1ZTk4NDMyNzJjMTNlMDE4NWM0OWE3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4_yQi-9ULBlriATcFMfw_2JgS2Wahh2AXK02Rx8jVy8'
-    }
-  };
-  fetch(url)
-    .then(response => response.json())
-    .then(movie => {
-      console.log(movie);
-    })
-    .catch(err => console.error(err));
-};
   const searchTerm = search.value;
 
-  console.log("inviato");
-  console.log("Search", searchTerm);
   const getMovies = (url) => {
-    
-  
-    fetch(url, options)
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.results) {
-        showMovies(data.results);
-      } else {
-        console.error('No results found');
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NDA4ZTBlMmQ3Mzk4ZGM3ZDg5OThjYjQzYWVkMDU2ZSIsInN1YiI6IjY1ZTk4NDMyNzJjMTNlMDE4NWM0OWE3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4_yQi-9ULBlriATcFMfw_2JgS2Wahh2AXK02Rx8jVy8'
       }
-    })
-    .catch(err => console.error(err));
+    };
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.results) {
+          showMovies(data.results);
+        } else {
+          console.error('No results found');
+        }
+      })
+      .catch(err => console.error(err));
   };
 
   if (searchTerm) {
