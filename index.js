@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const dateHeading = document.getElementById("date");
+  const currentDate = new Date();
+  dateHeading.textContent = `Trending movies as of: ${currentDate.toDateString()}`;
   const main = document.getElementById("main");
 
   const getMovies = async (url) => {
@@ -63,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
       titleEl.textContent = title + " ";
       voteEl.style.backgroundColor = getColor(vote_average);
       voteEl.textContent = vote_average;
+      voteEl.style.borderRadius= "15%";
+      voteEl.style.color="black";
 
       movieEl.addEventListener("click", () => {
         console.log("movie clicked");
