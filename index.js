@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("main");
 
   const getMovies = async (url) => {
+    loading.style.display="block";
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     }
   };
+  const loading = document.getElementById("loading");
+  loading.style.display = "block";
 
   const showMovies = (data) => {
     main.innerHTML = "";
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       movieEl.appendChild(infoEl);
       main.appendChild(movieEl);
     });
+    loading.style.display = "none";
   };
   getMovies(API_URL);
 });

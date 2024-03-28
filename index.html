@@ -15,7 +15,7 @@
 
     <body>
         <header id="header">
-            <h1>NETMDB by William U.O</h1>
+            <h1 id="h1">NETMDB by William U.O</h1>
             <form id="form" class="input-group">
                 <div class="form-outline" data-mdb-input-init>
                     <input
@@ -28,19 +28,20 @@
             </form>
         </header>
 
+        <div id="loading" style="display: none;">Loading...</div>
+        
         <main id="main">
-            <div class="movie">
-                <img
-                    src="https://thumbs.dreamstime.com/b/polar-bear-wallpaper-hd-wallpapers-ai-polar-bear-wallpaper-hd-wallpapers-297800380.jpg"
-                    alt="image"
-                />
+            
+            <div id="modal" class="modal" style="display: none;">
+                <div id="modal-content" class="modal-content"></div>
+            </div>
 
-                <div class="movie-info">
-                    <span>movie title</span>
-                    <span class="score">9.1</span>
-                </div>
-                <br />
-                <article class="overview">lorem ipsum</article>
+            <div id="modal" class="modal" style="display: none;">
+                <div id="modal-content" class="modal-content"></div>
+            </div>
+
+            <div id="modal" class="modal" style="display: none;">
+                <div id="modal-content" class="modal-content"></div>
             </div>
         </main>
         <script src="index.js"></script>
